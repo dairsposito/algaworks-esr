@@ -10,10 +10,6 @@ import com.daga.dagafood.di.modelo.Cliente;
 @Component
 public class NotificadorEmailMock implements Notificador {
 
-	public NotificadorEmailMock() {
-		System.out.println("NotificadorEmail MOCK");
-	}
-	
 	@Override
 	public void notificar(Cliente cliente, String mensagem) {
 		System.out.printf("MOCK: Notificação seria enviada para %s através do e-mail %s: %s\n",
