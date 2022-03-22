@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 import com.daga.dagafood.di.modelo.Cliente;
 
-@Qualifier("email")
+@Qualifier("tardio")
 @Component
 public class NotificadorEmail implements Notificador {
 

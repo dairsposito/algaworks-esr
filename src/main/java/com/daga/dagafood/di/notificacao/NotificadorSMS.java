@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 import com.daga.dagafood.di.modelo.Cliente;
 
-@Qualifier("sms")
+@Qualifier("urgente")
 @Component
 public class NotificadorSMS implements Notificador {
 

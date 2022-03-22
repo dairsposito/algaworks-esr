@@ -10,7 +10,7 @@ import com.daga.dagafood.di.notificacao.Notificador;
 @Component
 public class AtivacaoClienteService {
 
-	@Qualifier("sms")
+	@Qualifier("urgente")
 	@Autowired
 	private Notificador notificador;
 
