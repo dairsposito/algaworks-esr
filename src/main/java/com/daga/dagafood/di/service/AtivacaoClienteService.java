@@ -1,16 +1,17 @@
 package com.daga.dagafood.di.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import com.daga.dagafood.di.modelo.Cliente;
+import com.daga.dagafood.di.notificacao.NivelUrgencia;
 import com.daga.dagafood.di.notificacao.Notificador;
+import com.daga.dagafood.di.notificacao.TipoDoNotificador;
 
 @Component
 public class AtivacaoClienteService {
 
-	@Qualifier("urgente")
+	@TipoDoNotificador(NivelUrgencia.TARDIO)
 	@Autowired
 	private Notificador notificador;
 

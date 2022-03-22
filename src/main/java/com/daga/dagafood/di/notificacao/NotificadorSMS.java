@@ -1,11 +1,10 @@
 package com.daga.dagafood.di.notificacao;
 
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import com.daga.dagafood.di.modelo.Cliente;
 
-@Qualifier("urgente")
+@TipoDoNotificador(NivelUrgencia.URGENTE)
 @Component
 public class NotificadorSMS implements Notificador {
 
