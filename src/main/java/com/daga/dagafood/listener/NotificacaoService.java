@@ -12,7 +12,7 @@ import com.daga.dagafood.di.service.ClienteAtivadoEvent;
 @Component
 public class NotificacaoService {
 
-	@TipoDoNotificador(NivelUrgencia.URGENTE)
+	@TipoDoNotificador(NivelUrgencia.TARDIO)
 	@Autowired
 	private Notificador notificador;
 	
