@@ -7,10 +7,10 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ApplicationContext;
 
 import com.daga.dagafood.DagaFoodApiApplication;
-import com.daga.dagafood.domain.model.Cozinha;
-import com.daga.dagafood.domain.repository.CozinhaRepository;
+import com.daga.dagafood.domain.model.Permissao;
+import com.daga.dagafood.domain.repository.PermissaoRepository;
 
-public class ConsultaCozinhaMain {
+public class ConsultaPermissaoMain {
 
 	public static void main(String[] args) {
 
@@ -18,12 +18,12 @@ public class ConsultaCozinhaMain {
 				.web(WebApplicationType.NONE)
 				.run(args);
 
-		CozinhaRepository cozinhaRepository = applicationContext.getBean(CozinhaRepository.class);
+		PermissaoRepository permissaoRepository = applicationContext.getBean(PermissaoRepository.class);
 
-		List<Cozinha> cozinhas = cozinhaRepository.listar();
+		List<Permissao> permissoes = permissaoRepository.listar();
 
-		for (Cozinha cozinha : cozinhas) {
-			System.out.println(cozinha.getNome());
+		for (Permissao permissao : permissoes) {
+			System.out.printf("%s - %s\n", permissao.getNome(), permissao.getDescricao());
 		}
 
 	}

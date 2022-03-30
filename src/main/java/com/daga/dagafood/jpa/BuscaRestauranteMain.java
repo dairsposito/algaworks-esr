@@ -5,10 +5,10 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ApplicationContext;
 
 import com.daga.dagafood.DagaFoodApiApplication;
-import com.daga.dagafood.domain.model.Cozinha;
-import com.daga.dagafood.domain.repository.CozinhaRepository;
+import com.daga.dagafood.domain.model.Restaurante;
+import com.daga.dagafood.domain.repository.RestauranteRepository;
 
-public class BuscaCozinhaMain {
+public class BuscaRestauranteMain {
 
 	public static void main(String[] args) {
 
@@ -16,11 +16,11 @@ public class BuscaCozinhaMain {
 				.web(WebApplicationType.NONE)
 				.run(args);
 
-		CozinhaRepository cozinhaRepository = applicationContext.getBean(CozinhaRepository.class);
+		RestauranteRepository restauranteRepository = applicationContext.getBean(RestauranteRepository.class);
 
-		Cozinha cozinha = cozinhaRepository.buscar(1L);
+		Restaurante restaurante = restauranteRepository.buscar(1L);
 
-		System.out.println(cozinha.getNome());
+		System.out.println(restaurante.getNome());
 
 	}
 }
