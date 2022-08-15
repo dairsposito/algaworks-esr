@@ -1,6 +1,7 @@
 package com.daga.dagafood.api.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,22 +34,18 @@ public class CidadeController {
 
 	@GetMapping()
 	public List<Cidade> listar() {
-		return cidadeRepository.listar();
+		return cidadeRepository.findAll();
 	}
 
 	@GetMapping("/{cidadeId}")
 	public ResponseEntity<?> buscar(@PathVariable("cidadeId") Long cidadeId) {
-		try {
-			Cidade cidade = cidadeRepository.buscar(cidadeId);
+		Optional<Cidade> cidade = cidadeRepository.findById(cidadeId);
 
-			if (cidade == null) {
-				return ResponseEntity.notFound().build();
-			}
-
-			return ResponseEntity.ok(cidade);
-		} catch (EntidadeNaoEncontradaException e) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+		if (cidade.isEmpty()) {
+			return ResponseEntity.notFound().build();
 		}
+
+		return ResponseEntity.ok(cidade.get());
 	}
 
 	@PostMapping
@@ -65,15 +62,15 @@ public class CidadeController {
 	@PutMapping("/{cidadeId}")
 	public ResponseEntity<?> atualizar(@PathVariable Long cidadeId, @RequestBody Cidade cidade) {
 		try {
-			Cidade cidadeAtual = cidadeRepository.buscar(cidadeId);
+			Optional<Cidade> cidadeAtual = cidadeRepository.findById(cidadeId);
 
-			if (cidadeAtual == null) {
+			if (cidadeAtual.isEmpty()) {
 				return ResponseEntity.notFound().build();
 			}
 
-			BeanUtils.copyProperties(cidade, cidadeAtual, "id");
-			cidadeAtual = cadastroCidade.salvar(cidadeAtual);
-			return ResponseEntity.ok(cidadeAtual);
+			BeanUtils.copyProperties(cidade, cidadeAtual.get(), "id");
+			Cidade cidadeSalva = cadastroCidade.salvar(cidadeAtual.get());
+			return ResponseEntity.ok(cidadeSalva);
 		} catch (EntidadeNaoEncontradaException e) {
 			return ResponseEntity.badRequest().body(e.getMessage());
 		}
